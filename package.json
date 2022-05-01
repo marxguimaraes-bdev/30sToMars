@@ -1,0 +1,19 @@
+{
+  "name": "30stomars",
+  "version": "1.0.0",
+  "description": "A sample code project to land probes in Mars",
+  "main": "mars.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crashtodesktop/30sToMars.git"
+  },
+  "author": "Marx Guimaraes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crashtodesktop/30sToMars/issues"
+  },
+  "homepage": "https://github.com/crashtodesktop/30sToMars#readme"
+}
