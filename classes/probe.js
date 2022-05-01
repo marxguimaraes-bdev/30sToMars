@@ -1,18 +1,18 @@
 const axisMovement = {
   N: {
-    axis: 'Y',
+    axis: 'y',
     multiplier: 1,
   },
   E: {
-    axis: 'X',
+    axis: 'x',
     multiplier: 1,
   },
   S: {
-    axis: 'Y',
+    axis: 'y',
     multiplier: -1,
   },
   W: {
-    axis: 'X',
+    axis: 'x',
     multiplier: -1,
   },
 }
@@ -23,8 +23,7 @@ const directionArray = ['N', 'E', 'S', 'W'];
 module.exports = class Probe {
   constructor(initialX, initialY, initialD) {
     // Initial coordinates
-    this.currentX = initialX;
-    this.currentY = initialY;
+    this.pos = { x: initialX, y: initialY };
 
     const directionIndex = directionArray.findIndex(element => element === initialD);
 
@@ -54,22 +53,21 @@ module.exports = class Probe {
     if (this.currentD < 0) {
       this.currentD = this.currentD + 4;
     }
-
-    console.log(`Probe is now facing ${directionArray[this.currentD]}`);
   }
 
-  move() {
+  move(plateau) {
     const direction = directionArray[this.currentD]
     const { axis, multiplier } = axisMovement[direction];
 
-    if (axis === 'X') {
-      this.currentX = this.currentX + 1 * multiplier;
-    }
+    const newPos = this.pos[axis] + 1 * multiplier;
 
-    if (axis === 'Y') {
-      this.currentY = this.currentY + 1 * multiplier;
+    // the probe doesn't move if it would fall off the plateau
+    if (newPos >= 0 && newPos <= plateau[axis]) {
+      this.pos[axis] = newPos;
     }
+  }
 
-    console.log(`New probe position is: ${this.currentX}, ${this.currentY}`);
+  getStatus() {
+    return `${this.pos.x} ${this.pos.y} ${directionArray[this.currentD]}`;
   }
 }
