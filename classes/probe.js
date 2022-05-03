@@ -1,19 +1,19 @@
 const axisMovement = {
   N: {
     axis: 'y',
-    multiplier: 1,
+    value: 1,
   },
   E: {
     axis: 'x',
-    multiplier: 1,
+    value: 1,
   },
   S: {
     axis: 'y',
-    multiplier: -1,
+    value: -1,
   },
   W: {
     axis: 'x',
-    multiplier: -1,
+    value: -1,
   },
 }
 
@@ -57,9 +57,9 @@ module.exports = class Probe {
 
   move(plateau) {
     const direction = directionArray[this.currentD]
-    const { axis, multiplier } = axisMovement[direction];
+    const { axis, value } = axisMovement[direction];
 
-    const newPos = this.pos[axis] + 1 * multiplier;
+    const newPos = this.pos[axis] + value;
 
     // the probe doesn't move if it would fall off the plateau
     if (newPos >= 0 && newPos <= plateau[axis]) {
